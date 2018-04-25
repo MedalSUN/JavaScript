@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Math对象练习</title>
+<style>
+</style>
+
+<script language="JavaScript">
+
+	with (Math) {
+		document.write("<br>pow(5,2):\t",pow(5,2));
+		document.write("<br>sqrt(5):\t"+sqrt(5));
+		document.write("<br>exp(5):\t\t"+exp(5));
+		document.write("<br>abs(-5):\t"+abs(-5));
+		document.write("<br>E:\t"+E);
+		document.write("<br>LN2:\t",LN2);
+	}
+
+	document.write("<br>");
+	document.write("<br>");
+	
+	
+	var x;//创建一个变量x
+	for(var n=1;n<=100;n++)
+		{
+			x=Math.random()*1000;//random 是生成一个double型的数值，区间为【0.0,1）。生成一个随机数并且乘上1000，则x为【0.0,1000）中的随机数
+			x=parseInt(x);//将x取整数，再将它赋给X；
+			document.write(x+"\t\t\t\t\t\t");//输出x
+			if(n%10==0) {
+			//条件：当n能被10整除的时候输出换行。
+				document.write("<br>");
+			}
+			
+		
+		}
+	
+	
+	
+	
+</script>
+
+
+</head>
+<body>
+	
+	
+	
+
+	
+</body>
+
+</html>
