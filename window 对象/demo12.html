@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM对象---window对象---History（历史）的方法</title>
+</head>
+<body>
+
+<!--
+        注意区分history的forward和back和location的assign的区别。
+-->
+
+<button onclick="demo3">前进</button>
+<button onclick="demo1">后退</button>
+
+</body>
+
+<!--
+   只要加载过一次了，前进和后退就需要使用history而不是  location.assign
+   使用history.length就是在统计当前线上的历史记录中有多少个页面
+   在已经加载过之后再使用前进和后退都要使用history的forword和back而不是location.assign
+
+
+
+-->
+
+<script>
+
+function demo3() {
+    location.assign("demo3.html");
+}
+function demo1(){
+    history.back();
+    /*如果使用location.assign("demo1.html"),就是重新加载demo1，再加载就是覆盖*/
+}
+
+        if (history.length >= 3){
+                /*这是当当前文件所在的历史记录的文件数超过三个时，也就是他后边的demo3
+                * 已经加载过一次了，所以此时应当使用history的forward，而不是Location的
+                * assign。
+                * */
+        }
+
+
+        /*
+        加载新页面的方法
+        *
+        * */
+        location.replace();
+        location.href = "";
+
+        /*
+        * 刷新页面的方法：
+        * */
+        location.reload();
+        location.reload(true);/*强制刷新*/
+        location.href = location.href;
+
+
+
+</script>
+
+
+
+</html>
