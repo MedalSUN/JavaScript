@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM对象---window对象</title>
+</head>
+<body>
+
+
+<!--Window 对象是BOM中所有对象的核心，除了是BOM中所有对象的父对象外，还包含一些窗口控制函数。
+
+====本节学习内容
+1：window的属性（子对象）
+            主要是子对象使用
+2：window的窗口控制函数
+window.open() - 打开新窗口
+window.close() - 关闭当前窗口
+window.moveTo() - 移动当前窗口
+window.resizeTo() - 调整当前窗口的尺寸
+
+
+-->
+
+</body>
+<!--
+            window对象有很多的属性（子对象）
+
+            window中的每一个属性都是一个对象
+
+
+            1：JavaScript document 对象======DOM====dom又是BOM的组成部分之一
+            2：JavaScript frames 对象
+            3：JavaScript history 对象
+            4：JavaScript location 对象
+            5：JavaScript navigator 对象
+            6：JavaScript screen 对象
+
+
+-->
+<script>
+
+
+    /*
+    * 说明一下，window对象的属性（子对象）的特殊性
+    * */
+    var window = {
+/*window中的属性是子对象*/
+        screen:{
+            width:"1000px",
+            height:"800px"
+        },
+    }
+
+</script>
+
+
+
+
+</html>
