@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #con {
+            position: relative;
+            width: 50%;
+            height: 200px;
+            margin: 0 auto;
+            margin-top: 50px;
+            overflow: hidden;
+        }
+
+        ul {
+            position: absolute;
+            display: flex;
+            left: 0px;
+            width: 100%; /*不加100%会出现放大现象*/
+            height: 100%;
+        }
+
+        li {
+            list-style: none;
+            width: 18%;
+            height: 100%;
+            margin-left: 2%;
+            flex-shrink: 0; /*缩放设置为0 不缩放*/
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+<div id="con">
+    <ul id="ul">
+        <li><img src="../../../img/cat.jpg" alt=""></li>
+        <li><img src="../../../img/duo1.png" alt=""></li>
+        <li><img src="../../../img/duo2.png" alt=""></li>
+        <li><img src="../../../img/duo3.png" alt=""></li>
+        <li><img src="../../../img/duo4.png" alt=""></li>
+    </ul>
+</div>
+</body>
+
+<script>
+    var ul = document.getElementById("ul");
+
+    /* console.log("ul1: " + window.getComputedStyle(ul).width);*/
+
+    var con = document.getElementById("con");
+    /* console.log("con:" + window.getComputedStyle(con).width);*/
+
+    ul.innerHTML = ul.innerHTML + ul.innerHTML;/*ul的宽度是没有变的，已经固定了，但是多出来的li已经溢出去了*/
+
+
+    console.log(window.getComputedStyle(ul).width);
+    /*只有使用getComputedStyle才能得到写在样式表中的属性*/
+
+    var left = getComputedStyle(ul).left;
+    /*拿出来的只是值，不是属性，所以不能进行设置*/
+    var width = parseInt(getComputedStyle(ul).width);/*是li溢出去了，但是ul宽度还是没有变*/
+    console.log(width);
+
+    var i = 0;
+
+    function move() {
+        if (i >= width) {
+            i = 0;
+        } else {
+            i++;
+        }
+        ul.style.left = -i + "px";
+    }
+
+    setInterval("move()", 20);
+
+
+    /*
+
+        /!*增加需求，鼠标移上去是停止，鼠标移开是继续滚动*!/
+
+        ul.onmouseover = function(){
+            clearInterval(setInterval("move()", 10));
+        }
+        ul.onmouseout = function(){
+            setInterval("move()", 10);
+        }
+    */
+
+
+</script>
+
+
+</html>
