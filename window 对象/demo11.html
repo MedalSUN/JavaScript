@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM对象---window对象---Location（地址）的方法</title>
+</head>
+<body>
+
+
+<button onclick="baidu()">载入百度首页</button>
+<button onclick="reloadPage()">重新载入百度首页</button>
+<button onclick="replacePage()">重新载入新的百度首页</button>
+
+
+</body>
+
+<script>
+
+
+
+    /*
+     assign用于加载一个新的页面 并且可以点击并实现点击回退。
+    *
+    * */
+    function baidu(){
+        location.assign("http://www.baidu.com");
+    }
+
+
+    /*页面刷新，有可能是从缓存中重新拿出来页面达不到完全刷新的效果；
+    * 在使用reload（true）时可以将页面达到完全刷新的效果，不从缓存中
+    * 取东西，重新加载当前页面；
+    * */
+    function reloadPage(){
+        location.reload();
+      // location.reload(true);
+    }
+
+    /*replace（）
+    *
+    *加载新的页面 但是新页面完全把老页面替换掉，是不能返回
+    *
+    * */
+
+    function replacePage(){
+        Location.replace("http://www.baidu.com");
+    }
+
+
+
+</script>
+
+</html>
