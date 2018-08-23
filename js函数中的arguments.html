@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>argument</title>
+
+</head>
+<body>
+
+<!--
+            arguments====是一个数组对象===他存储的就是实参，和实参没有关系
+            属性callee 指向拥有arguments数组的对象========多用于递归
+            arguments.callee === sum
+            arguments.callee() === sum()
+
+
+            this===谁调用当前的函数，this指向谁。
+-->
+
+</body>
+
+<script>
+
+
+
+    /*
+    * ====js是基于对象的语言，他没有像Java语言中的继承，重载，多态等概念；
+    * 所以下述重载代码是错误的
+    *
+    *
+
+    function sum(num1,num2){
+        alert(1);
+    }
+    function sum(num1,num2,num2){
+        alert(2);
+    }
+
+    sum(1,2);
+    sum(1,2,3);
+
+    */
+
+
+
+    /*   此处的没有写形参*/
+   /* function sum(){
+        arguments;     /!*是实参列表数组*!/
+        /!*console.log(arguments);返回的是调用函数时的！实参！数组，把传进去的实参放进一个argument数组中*!/
+        var sum = 0;
+        for(var i = 0;i < arguments.length;i++){
+            console.log(arguments[i]);
+            sum += arguments[i];
+        }
+        console.log("sum:" + sum);
+    }
+
+    sum(1,2);
+    sum(1,2,3);
+*/
+
+
+
+
+   /*形参，arguments，还有实参的关系*/
+    function sum1(num1,num2,num3) {
+
+        /*在没有写形参时，实参仍然传输了过来，写形参只是为了在函数内部更好的计算*/
+
+        console.log(arguments);
+        console.log(num1);
+        console.log(num2);
+        console.log(num3);
+    }
+
+    sum1(10);
+
+
+
+
+</script>
+
+
+
+</html>
