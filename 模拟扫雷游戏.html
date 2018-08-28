@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟扫雷游戏</title>
+
+    <!--
+        1：十二个格，有六张图片
+        2：每次点击就会产生六张中的其中一个图片
+        3:使用随机数生成器，生成1~6数字，并且出现十二个，代表每一种数字出现两次
+        4：产生图片之后，每一个方格的图片就固定不变了，（如果不刷新）
+        5：点击的时候如果连续两次点击的是同一种图片。就保留产生的图片
+        6：如果连续点击的不是同一种图片直接初始化为cat背景图
+    -->
+
+
+    <style>
+
+        #table {
+            margin: 0 auto;
+            border: 2px solid yellow;
+        }
+
+        td {
+            width: 200px;
+            height: 200px;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+
+<table id="table" border="2px">
+    <tr>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+    </tr>
+    <tr>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+    </tr>
+    <tr>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+        <td><img src="../../../img/cat.jpg" alt=""></td>
+    </tr>
+</table>
+
+
+</body>
+<script src="../../../js/first.js"></script>
+
+<script>
+
+
+    /*1:生成十二个六数字随机数，每一个数字只能出现两次，
+     *代表每一个位置的图片索引*/
+    var imgsIndex = [];
+    var result1 = getRandomNum(1, 6);
+    var result2 = getRandomNum(1, 6);
+    imgsIndex = result1.concat(result2);
+    console.log(imgsIndex);
+
+
+    /*制定判断规则 子功能函数
+    * 将所有的图片初始化为cat.jpg
+    * */
+    function backImg() {
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].src = "../../../img/cat.jpg";
+            console.log("我被调用");
+        }
+    }
+
+    /*子功能函数，判断是否胜利*/
+    function gameResult(account){
+        if (account == 6) {
+            setTimeout("alert(\"恭喜通关！！！\")", 1000);
+        }
+    }
+
+
+
+
+    /*3：制定判断规则
+    *  连续点击的两张图片必须是一样的，如果不一样，所有的图片的src都需要初始化成cat.jpg
+    *  注意：只要不刷新，那么每一个方格所代表的图片是固定的，随机数产生函数只被调用一次；
+    * */
+    var account = 0; /*当account等于6的时候就是游戏成功*/
+    var checkArr = [];
+
+    function check() {
+        if (checkArr.length == 2) {
+            if (checkArr[0].src == checkArr[1].src) {
+                console.log(checkArr);
+                checkArr = [];
+                account++;
+                gameResult(account);
+            } else {
+                checkArr = [];
+                console.log(checkArr);
+                setTimeout("backImg()", 1000);
+            }
+        }
+    }
+
+
+    /*2：为每一个图片添加点击事件,点击之后将这个图片的src改成上边随机数所代表的随机数
+    * 这里有一个可以借鉴的地方，在不需要后台传输并进行更改产生的图片时，可以直接使用相对路径
+    * 并进行字符串的连接，如果要后台传输，要使用数组模拟存储传进来的图片数组，并且使用imgsIndex
+    * 作为图片数组的索引下标！！！
+    * */
+    var imgs = document.getElementsByTagName("img");
+
+    function mainFun() {
+        for (var i = 0; i < imgs.length; i++) {
+            !function (i) {
+                imgs[i].onclick = function () {
+                    imgs[i].src = "../../../img/icon" + imgsIndex[i] + ".gif";
+
+                    checkArr.push(imgs[i]);
+
+                    if (checkArr[0] != checkArr[1]) {
+                        check();
+                    } else {
+                        checkArr.shift();/*pop（）也可以*/
+                        console.log("连续点击两次");
+                        check();
+                    }
+                }
+            }(i);
+        }
+    }
+
+    mainFun();
+
+
+</script>
+
+</html>
