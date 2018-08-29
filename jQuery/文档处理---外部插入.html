@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>外部插入</title>
+
+</head>
+<body>
+<ul>
+    <li>烟台大学1</li>
+    <li>烟台大学2</li>
+    <li id="li3">烟台大学3</li>
+    <li>烟台大学4</li>
+</ul>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.4.1/jquery.min.js"></script>
+<script>
+
+    /*在外边插   调用者是父元素*/
+    $("ul").after("<li>烟台大学5</li>");
+
+    $("ul").before("<li>烟台大学6</li>");
+
+    /*insertBefore  insertAfter   调用者是插入者*/
+    $("<li>烟台大学7</li>").insertBefore($("#li3"));
+    $("<li>烟台大学8</li>").insertAfter($("#li3"));
+
+
+
+
+</script>
+</html>
