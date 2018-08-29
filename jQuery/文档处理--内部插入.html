@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="con">divcon</div>
+<ul>
+    <li>烟台大学1</li>
+    <li id="li2">烟台大学2</li>
+    <li id="li3">烟台大学3</li>
+    <li id="li4">烟台大学4</li>
+</ul>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.4.1/jquery.min.js"></script>
+
+<script>
+    /*父元素调用*/
+    $("ul").append("<li>烟台大学5</li>");
+
+    /*子元素调用===和上边的意义相同，但是他的调用对象不同参数也不同*/
+    $("<li>烟台大学6</li>").appendTo($("ul"));
+
+    /*
+    这两个方法全部都是移动而不是复制
+    $("ul").appendTo("#con");
+    $("#con").append($("ul"));*/
+
+    /*
+    * 上述append都是从尾部插入，
+    * prepend是从前边插入
+    * */
+   /* $("ul").prependTo("#con");
+    $("#con").prepend($("ul"));*/
+
+
+
+
+
+
+</script>
+
+</html>
