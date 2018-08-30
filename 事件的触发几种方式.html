@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件触发</title>
+
+
+    <!--
+    1:方法234，都是自动执行的
+    2：方法1，是必须要执行事件之后才能够调用事件函数
+
+    -->
+
+    <style>
+
+        #div1{
+            width:200px;
+            height: 200px;
+            background-color: #49ff60;
+            margin:0 auto;
+        }
+
+
+
+
+
+        #fa{
+            width:400px;
+            height: 400px;
+            background-color: gray;
+            margin:0 auto;
+        }
+        #son{
+            width:200px;
+            height: 200px;
+            background-color: red;
+            margin:0 auto;
+        }
+
+
+
+    </style>
+
+
+</head>
+<body>
+
+<div id="div1">
+    <a href="http://www.baidu.com"><span>baidu</span></a>
+</div>
+
+
+<div id="fa">
+    <div id="son"></div>
+</div>
+
+
+
+</body>
+<script src="../../js/jquery-3.1.1.js"></script>
+<script>
+
+    /*为了效果清晰，为父元素添加一个点击事件*/
+    $("#div1").click(function(){
+        console.log("div1");
+    });
+
+
+    /*方法1：
+    * 1：有回调函数，点击后才执行回调函数
+    * 2:有默认事件，会被触发；
+    * 3：有事件冒泡；
+    * */
+    $("a").click(function(){
+        console.log("1");
+        return false;/*阻止事件冒泡，阻止默认事件*/
+    });
+
+    /*方法2：
+    * 1：方法1中必须点击之后才能产生事件行为
+    * 2：直接使用方法，可以直接自动执行绑定click事件的所有函数
+    * 3：如果没有已经定义好的事件函数，那么只是自动点击一下，还会有事件冒泡；
+    * 4: 因为a标签的特殊性，所以必须使用a标签的内部子元素执行点击事件
+    * 之后经过事件冒泡将触发事件冒泡到父元素a标签上，触发a标签的事件（点击事件和冒泡事件）
+    * */
+   /* $("a span").click();*/
+
+    /*方法3
+    * 1:有事件冒泡=======为什么没有div1产生；
+    *
+    * */
+   /* $("a span").trigger("click");*/
+
+
+
+    $("#son").click(function(){
+        console.log("son");
+    });
+
+
+    $("#fa").click(function(){
+        console.log("fa");
+    });
+
+
+    /*直接调用click方法，执行已经定义好的点击事件;
+    * 1:会有事件冒泡
+    * 2：有默认事件
+    * */
+   /* $("#son").click();*/
+
+
+
+   /*
+   * 使用trigger
+   * 1：直接调用事件
+   * 2：只要将事件类型写在trigger参数内，就可以调用任意事件类型！！！
+   * 3：有事件冒泡，有默认事件
+   *
+   * */
+   /*$("#son").trigger("click");*/
+  /* $("#fa").trigger("click");*/
+
+
+
+  /*
+  * 1：triggerHandle（）
+  *2:触发事件
+  * 3：不会冒泡
+  * 4：不会默认事件
+  * */
+
+  $("span").click(function(){
+      console.log("span")
+  });
+
+  $("#son").triggerHandler("click");
+    $("a span").triggerHandler("click");
+
+
+
+
+
+</script>
+
+
+
+</html>
