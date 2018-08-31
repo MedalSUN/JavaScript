@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件切换</title>
+    <!--在高版本中已经被取消了-->
+
+    <!--事件切换存在方面
+    1：鼠标移动   mouse ====hover()
+    2：点击事件   click ====tog()
+    -->
+
+
+    <style>
+        #d{
+            width:200px;
+            height:200px;
+           /* background-color: #55ceff;*/
+            border: 1px solid yellow;
+        }
+
+        .one{
+            width:200px;
+            height:200px;
+             background-color: #55ceff;
+        }
+
+
+    </style>
+
+
+
+
+</head>
+<body>
+
+
+<div id="d"></div>
+
+<ul>
+    <li>Go to the store</li>
+    <li>Pick up dinner</li>
+    <li>Debug crash</li>
+    <li>Take a jog</li>
+</ul>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/1.4.1/jquery.js"></script>
+<script>
+/*
+    $("#d").hover(
+        function(){
+            console.log("over");
+        },function(){
+            console.log("out");
+        }
+    );*/
+
+    /*也可以使用bind进行替代，
+    *
+    * 1：使用bind可以同时添加多个同类型的事件，
+    * 2：在使用绑定事件的简写操作中，直接使用事件的方法名也可以同时添加多个
+    *    因为他和bind本质上是一样的故是被允许重复添加的，
+    * 3：注意区别原生js中添加事件的不同的方法 DOM0  DOM2,进行详细总结
+    *
+    *
+    * */
+    $("#d").bind("mouseover mouseout",function () {
+       $(this).toggleClass("one");
+    });
+
+
+
+
+
+
+
+
+
+
+
+    /*使用tog实现同一个对象定义多个点击事件
+    *
+    * 1：每次点击后依次调用函数。
+    * 2：当点击次数超过定义的函数个数，就会从头开始；
+    *
+    * tog（fn1，fn2，fn3.....）;
+    *
+    * 可以使用unbind("click")来删除。
+    * */
+
+
+$("li").toggle(
+    function () {
+        $(this).css({"list-style-type":"none", "color":"blue"});
+    },
+    function () {
+        $(this).css({"list-style-type":"disc", "color":"red"});
+    },
+    function () {
+        $(this).css({"list-style-type":"none","color":"yellow"});
+    }
+);
+
+
+
+
+
+</script>
+
+
+</html>
