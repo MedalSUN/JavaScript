@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery动画</title>
+
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #container{
+            width:600px;
+            height: 50px;
+            margin:0 auto;
+            border-bottom: 1px solid gray;
+        }
+        .cleanfix:after{
+            display: block;
+            content: "";
+            clear: both;
+        }
+        #con_ul{
+            list-style: none;
+        }
+        #con_ul > li{
+            float: left;
+            height: 50px;
+            width:100px;
+            line-height: 50px;
+            text-align: center;
+        }
+        #con_ul > li:hover{
+            background-color: blue;
+        }
+        .dropMenu{
+             display: none;
+            width: 120px;
+            height:auto;
+        }
+        .dropMenu > li{
+            height: 30px;
+            line-height: 30px;
+            background-color: gray;
+            list-style: none;
+            text-align: left;
+            padding-left: 20px;
+        }
+        .dropMenu > li a{
+            color: white;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div id="container">
+    <ul id="con_ul" class="cleanfix">
+        <li>首页</li>
+        <li>
+            关于我们
+            <ul id="drop1" class="dropMenu">
+                <li><a href="">最新动态</a></li>
+                <li><a href="">视频中心</a></li>
+                <li><a href="">媒体报道</a></li>
+                <li><a href="">热点专题</a></li>
+                <li><a href="">媒体资料库</a></li>
+            </ul>
+        </li>
+        <li>
+            新闻中心
+            <ul id="drop2" class="dropMenu">
+                <li><a href="">最新动态</a></li>
+                <li><a href="">视频中心</a></li>
+                <li><a href="">媒体报道</a></li>
+                <li><a href="">热点专题</a></li>
+                <li><a href="">媒体资料库</a></li>
+            </ul>
+        </li>
+        <li>
+            苏宁产业
+            <ul id="drop3" class="dropMenu">
+                <li><a href="">最新动态</a></li>
+                <li><a href="">视频中心</a></li>
+                <li><a href="">媒体报道</a></li>
+                <li><a href="">热点专题</a></li>
+                <li><a href="">媒体资料库</a></li>
+            </ul>
+        </li>
+        <li>
+            社会责任
+            <ul id="drop4" class="dropMenu">
+                <li><a href="">最新动态</a></li>
+                <li><a href="">视频中心</a></li>
+                <li><a href="">媒体报道</a></li>
+                <li><a href="">热点专题</a></li>
+                <li><a href="">媒体资料库</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.4.1/jquery.js"></script>
+<script>
+
+    console.log($("#con_ul > li").children());
+
+
+    $("#con_ul > li").hover(function(){
+        $(this).children().slideDown("slow");
+    },function () {
+        $(this).children().slideUp("slow");
+    })
+
+</script>
+
+
+</html>
