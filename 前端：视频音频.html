@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <!--一直以来都是只有移动端的浏览器禁掉了音视频的自动播放,现在桌面版的浏览器也开始下手了。
+    浏览器这样做的目的在于,不想让用户打开一一个页面就各种广告或者其它乱七八糟的声音在播,营造一个纯静的环境。
+    但是浏览器也不是一刀切,至少允许音视频静育的播放。所以对于视频来说,可以静音自动播放,
+    然后加个声音被关掉的图标让用户点击打开,再加添加设置向导之类的方法引导用户设置允许当前网站自动播放。
+    而对于声音可以用AudioContext的API ,只要页面被点过一次AudioContext就被激活,就能直接在代码里面控制播放了。
++
+==========音频不能自动播放但是可以通过设置controls来进行手动的播放
+============           视频可以在静音的情况下进行自动播放；
+
+使页面音频视频不需要静音就可以播放：
+1：为audio，video设置一个click事件
+
+2：对window对象添加一个mouseover事件，调用audio，video的trigger事件
+      这个是满足必须有用户交互才能播放要求
+
+-->
+
+
+
+
+    <!--以前使用音频视频时需要使用flash插件
+
+    H5进行改善，不需要任何插件；
+
+    1：video   视频     mp4 ogg webm； mp4格式的视频文件所有的主流浏览器都支持；IE9之前的不支持video标签；
+
+    2：audio   声频     wav，ogg，mp3  mp3格式的音频文件所有的主流浏览器都支持，IE9之后的不支持video标签
+
+
+    -->
+
+
+</head>
+<body>
+<!--
+1：video中可以使用src属性可以唯一的指定播放的视频；但是由于各大浏览器兼容的视频格式不同所以必须使用子标签：source标签
+   来指定播放视频的资源位置；===========这是考虑兼容性
+
+2: 浏览器在进行读取视频资源的时候，需要直接读取源文件，读完之会后才会发现视频格式，所以为了提升读取速率，优化性能
+  就必须在source标签中添加type属性用来指明视频的格式，浏览器上来先读取type类型=======这是考虑性能的提升；
+
+3：在source标签之后的裸露文字是当浏览器不支持video标签时显示的提示文字；IE9之前不支持；
+
+
+属性========
+1:controls   添加上此属性之后在页面中出现视频播放控制的按钮；  =====太丑，一般不使用，都是自动播放；
+
+2：autoplay  自动播放   再增加一个muted（静音）就可以播放====需要静音配合才能播放
+
+3：poster="图片地址"   一般为这个视频的第一帧截图；
+
+4：loop;  用来进行视频的循环播放
+
+5:preload= "auto" 预加载！ 和autoplay重复了，一般不需要使用
+
+-->
+
+
+<video width="100%" height="300px"  autoplay="autoplay" muted poster="../img/cat.jpg" loop>
+    <source src="../img/binzhiliang1.mp4" type="video/mp4">
+    <source src="../img/binzhiliang1.ogg" type="video/ogg">
+    <source src="../img/binzhiliang1.webm" type="video/webm">
+您的浏览器不支持video标签
+</video>
+
+
+<!--
+
+
+
+
+-->
+
+
+<audio autoplay>
+    <source src="../img/ouba.mp3" type="audio/mp3">
+    <source src="../img/ouba.ogg" type="audio/ogg">
+    <source src="../img/ouba.wav" type="audio/wav">
+    您的浏览器不支持audio
+</audio>
+
+
+
+
+</body>
+</html>
