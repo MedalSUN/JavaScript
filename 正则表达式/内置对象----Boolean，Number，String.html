@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内置对象----Boolean,Number，String</title>
+
+</head>
+<body>
+
+</body>
+
+<script>
+
+    /*注意6个，可以自动转换Boolean--false的数据===脑图*/
+
+    /*强制类型转换*/
+    var b = Boolean("0");
+    console.log(b);/*true*/
+
+    /*创建的是一个Boolean对象*/
+    var c = new Boolean("");
+    console.log(c);/*Boolean {false}*/
+
+
+
+    /*
+    * Number
+    *
+    * 四个常量
+    *NEGATIVE_INFINITY	负无穷大，溢出时返回该值。
+    *POSITIVE_INFINITY	正无穷大，溢出时返回该值。
+    *
+    * */
+    console.log(Number.MAX_VALUE);/*1.7976931348623157e+308*/
+    console.log(Number.MIN_VALUE);/*5e-324*/
+    console.log(123);
+
+
+
+    /*
+    * String
+    *          数字转换成字符串的方法
+    *          1：   number  +"";
+    *          2:    number.toString();
+    *          3：   String（number）；
+    *
+    *
+    * */
+    var test1 = 123;
+    console.log(test1);/*数字*/
+    var test11 = String(test1);/*字符串*/
+    console.log("String: " + test11);
+
+
+
+    var test2 = "this is jredu";
+    console.log(test2.length);/*空格也是一个字符*/
+    console.log(test2.toUpperCase());/*返回的是新的字符串，没有从原数组中进行操作*/
+    console.log(test2);/*原数组没有变*/
+    console.log(test2.toLowerCase());
+    console.log(test2.charAt(8));/* j=========查询指定位置的字符*/
+    console.log(test2.indexOf("i",3));/*2,后边的参数代表从第几位开始，【包括】 只找到第一个即可 ====找不到就返回-1！！！*/
+    console.log(test2.substring(5,7));/*is    截取字符串，，前闭后开*/
+    console.log(test2);/*原数组没有变，代表substring是不从原数组进行截取的，只是形成了一个视图*/
+
+
+    /*在js中字符串也是一个特殊的数组
+    *
+    * 因此：test2.charAt(8);===  test2[8]
+    *
+    * */
+
+    /*
+    * trim()方法使用，将String的两端的空格删去；
+    *
+    * */
+    var tt = " this is jredu ";
+    console.log(tt.length);
+    console.log(tt.trim().length);
+
+
+
+    /*
+    *以下几个String方法可以把正则表达式当做参数来使用
+    * match()====返回匹配数据 内部参数既可以是正则表达式，又可以是字符串；=======第一个匹配元素（如果没加附加参数g）
+    *            如果是一个那么将返回这个匹配元素的所有信息，如果匹配多个那么就以数组的形式返回。
+    * search（） ===直接返回匹配数据的索引位置，若无则可以返回-1   =============第一个匹配元素（不论加没加附加参数g）；
+    * replace(参数1，参数2) ==== 参数1被参数2替换，  =======第一个匹配元素（如果没加附加参数g）
+    * split（）   分割，内部参数为分割符；分隔符是字符串中已经存在的。===放到数组里面
+    *            多用于处理从服务端发送来的数据，并使用此方法进行分割成自己需要的数据；
+    *
+    *
+    * */
+    var test3 = "this is jreisdu";
+    var reg = /is/g;
+    console.log(test3.match(reg));
+    console.log(test3.match("jre"));
+
+
+    /*只出现第一个匹配元素*/
+    console.log(test3.search("jre"));
+    console.log(test3.search(reg));
+
+
+    var str1 = test3.replace(reg ,"是");
+    console.log(str1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</html>
