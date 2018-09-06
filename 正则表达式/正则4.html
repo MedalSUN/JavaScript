@@ -51,7 +51,8 @@
 
 
     /*
-    * test 为验证str内部有没有匹配reg1
+    * test 为验证str内部有没有匹配正则表达式。
+    * 返回值为true或者false
     *
     * */
      console.log(reg1.test(str));
@@ -60,7 +61,27 @@
      /*
      * exec  和String的match相类似；
      *
+     * 如果使用g 那么match方法返回的只是数组形式的元素，并没有详细的描述出每个元素的信息
+     *          使用exec方法可以返回匹配的所有的元素的详细的信息；
+     *
+     *   不使用g  match返回的是第一个匹配的元素的所有的信息；
+     *
+     * 但是使用全局g时，他的匹配将会是未被匹配的下一个元素
+     *              所以可以使用  reg.exec()进行判断后面是否还有符合条件的元素；
+     *
      * */
+
+     var test = "zhangsan is and is the pig";
+     var reg = /is/g;
+     while(true){
+         var result = reg.exec(test);
+         if (result){
+             console.log(result);
+         }else{//此时说明reg.exec(test) 为空值，他的进行查找未匹配的元素已经找不到了；
+             break;
+         }
+     }
+
 
 
      /*
