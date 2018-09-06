@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="">
+    <input id="etxt" type="text">
+    <span id="errorType1">格式错误，请重新输入</span>
+    <span id="errorType2">空的</span>
+
+    <input type="submit">
+
+</form>
+
+</body>
+
+<script>
+    var content = document.getElementById("etxt").value;
+    var err1 = document.getElementById("errorType1");
+    var err2 = document.getElementById("errorType2");
+
+
+
+
+    var form = document.getElementsByTagName("form")[0];
+    form.onsubmit = function (e) {
+        //长度为0
+        if (content.length == 0){
+            err2.style.display = "block";
+            e.preventDefault();
+        }
+        var index1 = content.indexOf("@");
+        var index2 = content.indexOf(".");
+        if (index1 == -1 || index2 == -1 || index1 > index2 || index1 - index2 > -1){
+            err1.style.display = "block";
+            e.preventDefault();
+        }
+
+    }
+
+
+
+
+</script>
+
+</html>

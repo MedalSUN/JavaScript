@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+        #errorType {
+            display: none;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+
+<form action="">
+    姓名：<input id="account" type="text">
+    <span id="errorType">格式错误，请重新输入</span>
+    <br>
+    <input type="submit">
+</form>
+
+</body>
+<script>
+
+    var account = document.getElementById("account");
+    var errorType = document.getElementById("errorType");
+    var errorArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "&", "$", "@"];
+    account.onblur = function () {
+        /*因为val是一个动态变化的，所以应当在每次触发事件时就去重新获取一次。*/
+        var val = account.value;
+        for (var i = 0; i < errorArr.length; i++) {
+            if (val.indexOf(errorArr[i]) != -1) {
+                errorType.style.display = "inline";
+                return;/*return之后下面的就不再进行了*/
+            }
+        }
+        errorType.style.display = "none";
+    }
+
+</script>
+
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式----------表单验证</title>
+
+
+    <!--正则表达式的符号性太强，所以相当晦涩-->
+
+
+
+    <!--
+    1:原始是将表单元素中的信息拿出来，再进行判断
+    2：在写正则判断之前，首先应当明白正确的判断标准！！！
+    3：获取值得到时候应当使用value而不是innerText；
+    -->
+
+    <style>
+        #errorType1{
+            color: red;
+            display: none;
+        }
+        #errorType2{
+            color: yellow;
+            display: none;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<form action="">
+    <input id="etxt" type="text" value="">
+    <span id="errorType1">空的</span>
+    <span id="errorType2">格式错误，请重新输入</span>
+
+
+    <input type="submit">
+
+</form>
+
+</body>
+
+<script>
+
+
+    var form = document.getElementsByTagName("form")[0];
+
+    var content = document.getElementById("etxt");
+    var err1 = document.getElementById("errorType1");
+    var err2 = document.getElementById("errorType2");
+
+    console.log(content);
+
+    form.onsubmit = function (e) {
+        //长度为0
+        if (content.length == 0){
+            err1.style.display = "inline";
+            e.preventDefault();
+        }
+        var index1 = content.indexOf('@');
+
+        var index2 = content.indexOf('.');
+        console.log(index1);
+        console.log(index2);
+        if (index1 == -1 || index2 == -1 || index1 > index2 || index1 - index2 > -1){
+            err2.style.display = "inline";
+            e.preventDefault();
+        }
+
+    }
+
+
+
+
+</script>
+
+
+</html>
