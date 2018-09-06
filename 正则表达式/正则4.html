@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则--正文</title>
+    <!--
+    1：在js中被忽略的细节，在正则表达式中被详细的体现出来
+    2：严谨
+    3：正则表达式是一个描述字符模式的对象
+
+
+
+    4：
+
+        // 代表正则表达式
+
+
+        1)表达式： 定义的正则规则；
+        2）附加参数：  执行正则表达式的前提条件；====可以参数累加，不需要空格和标点；
+           (1)global   g 全局匹配（匹配的就不再是第一个元素了）
+           （2）ignore  i 忽略大小写
+           （3）        m  执行多行匹配 ======有多行时可以使用进行匹配，   但是执行操作的也只有一个；
+                            m有时是无效的，所以通常是使用g来代替m的作用；
+
+两个定义方法：
+            var reg = /表达式/附加参数
+            var reg = new RegExp(参数1，参数2)；
+                    参数1：正则表达式；
+                    参数2：附加参数，可以省略；
+
+
+
+    -->
+
+
+
+
+
+
+</head>
+<body>
+
+<script>
+
+    var str = "hhhhh white jjjjj hhscdc white";
+
+    /*用于判断字符串里面有没有这个*/
+    var reg1 = /white/;
+
+    var reg2 = new RegExp("white");
+
+
+    /*
+    * test 为验证str内部有没有匹配reg1
+    *
+    * */
+     console.log(reg1.test(str));
+
+
+     /*
+     * exec  和String的match相类似；
+     *
+     * */
+
+
+     /*
+     * 定义验证邮箱格式的正则表达式
+     *
+     * 243244@qq.com
+     * 243244@xx.com.cn
+     *
+     *小写w有下划线_
+     * 大写w是小写w的取反
+     * */
+     var testReg1 = /^[a-zA-Z0-9_]{1,}@[a-zA-Z0-9]{1,}.[a-zA-Z]{3}(.[a-zA-Z]{2}){0,1}$/
+     var testReg2 = /^\w+@W+.[a-zA-Z]{3}(.[a-zA-Z]{2})?$/
+
+    console.log(testReg1.test("243244@qq.com.cn"))
+
+
+</script>
+
+
+
+
+</body>
+
+
+
+
+</html>
