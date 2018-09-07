@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象练习</title>
+
+</head>
+<body>
+
+</body>
+<script>
+    /*
+
+        var obj1 = {
+            name: "zhangsan",
+            age: 11,
+            address: "沧江",
+        }
+
+    */
+
+    /*  var inMath = Number(prompt("请输入数学成绩："));
+        var inChina = Number(prompt("请输入语文成绩："));
+        var inEnglish = Number(prompt("请输入英语成绩："));
+
+
+        var stu1 = {
+            math: inMath,
+            china: inChina,
+            english: inEnglish,
+            name: "张三",
+            age: 11,
+            address: "沧江",
+
+            introduce: function () {
+                /!*注意
+                 * 使用this来代替具体的调用者，在调用者被改变时也不需要重新更改原来的方法中的参数；
+                 * *!/
+                 return "<p> 大家好！ 我叫：" + this.name + " 我的年龄为：" + this.age + " 地址为：" + this.address + "</p>";
+            },
+
+            sumScore:function(){
+                var sum = this.math + this.china + this.english;
+                return sum;
+            },
+
+
+        }
+
+        document.write("<p> 数学成绩为：" + inMath + "</p>");
+        document.write("<p> 语文成绩为：" + inChina + "</p>");
+        document.write("<p> 英语成绩为：" + inEnglish + "</p>");
+
+        document.write(stu1.introduce());
+        console.log(stu1.sumScore());
+    */
+
+    /*
+
+      var classScore = {
+          s1:22,
+          s2:23,
+          s3:24,
+          s4:21,
+          s5:55,
+
+          claSort:function(){
+              var arr = [];
+
+
+              for(var item in this){
+                if (typeof this[item] != "function"){
+                    arr.push(this[item]);
+                }
+              } ;
+
+              /!*自定义排序方法：*!/
+              arr.sort(function(a,b){
+                  if (a > b){
+                      return 1;
+                  }else if (a == b){
+                      return 0;
+                  }else{
+                      return -1;
+                  }
+              });
+
+              return arr;
+          },
+
+      }
+
+
+
+      console.log(classScore.claSort());
+
+    */
+
+
+    /*
+    * 排序的时候需要带着所有的学生的名称
+    * ==========优化
+    * */
+
+    var classScore = {
+        s1: 22,
+        s2: 23,
+        s3: 24,
+        s4: 21,
+        s5: 55,
+
+        claSort: function () {
+            var arr = [];
+
+
+            for (var item in this) {
+                if (typeof this[item] != "function") {
+                    /*arr.push(this[item]);
+                    注意，使用数组的push的时候，传进去的不能是一个变量
+                    */
+                    var obj = {};
+                    obj[item] = this[item];
+                    arr.push(obj);
+                }
+            }
+            ;
+
+            /*自定义排序方法：
+            * 原理就是冒泡排序；
+            * 注意：这里的ab是两个对象，所有应当把这个对象中的值拿出来进行比较
+            *
+            * 通过   对象【属性名1】 > 对象【属性名2】   这样比较的就是对应的属性值；（因为这里的属性名是String，所以不能使用点符号法）
+            *
+            * */
+            arr.sort(function (a, b) {
+                /*注意使用Object.keys(a)方法拿过来的可能是一个数组，所以要【0】*/
+                var keyA = Object.keys(a)[0];
+                var keyB = Object.keys(b)[0];
+                /*
+                * 此时通过对象【属性名1】，将相对应的属性值拿出来
+                * 接着进行数值上的比较；
+                * */
+                if (a[keyA] > b[keyB]) {
+                    return 1;
+                } else if (a[keyA] == b[keyB]) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+            });
+
+            return arr;
+        },
+
+    }
+
+
+    console.log(classScore.claSort());
+
+
+</script>
+
+
+</html>
