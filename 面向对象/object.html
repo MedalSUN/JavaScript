@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+
+    /*
+    *
+    * 1：为对象中添加属性，获取属性值
+    *       1）obj.name = "";
+    *       2)obj["name"] = ""
+    *     注意在forin循环中，遍历出来的item是一个String类型的数据；
+    *     所以应当使用obj[item] 而不是obj.item;
+    *
+    * */
+
+    var obj = {
+        name:"zhangsan",
+        age:12,
+    }
+
+
+    for(var item in obj){
+        console.log(typeof item);/*看一下item是什么类型的*/
+        console.log(item);/*输出item看一下item是什么*/
+        console.log(obj.item);/*undefined*/
+        console.log(obj[item]);/*必须使用这个方法；*/
+    }
+
+
+    /*
+    * 删除对象的属性；
+    *
+    * */
+    delete obj.name;
+    console.log(obj.name);/*undefined*/
+
+
+</script>
+
+
+
+</html>
