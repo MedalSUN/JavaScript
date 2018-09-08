@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>封装</title>
+
+    <!--
+            封装的目的
+
+        在类中使用var进行定义，相当于是Java中的private
+
+    -->
+
+</head>
+<body>
+
+</body>
+<script>
+
+    /* function Person(name,age){
+         this.name = name;
+
+
+         /!*增加了判断逻辑
+         * 对年龄的实际性进行逻辑判断
+         * *!/
+         if(age > 100 || age < 0){
+             this.age = 18;
+         }else{
+             this.age = age;
+         }
+
+
+         this.say = function (){
+             console.log(this.name + ":" + this.age);
+         }
+     }
+
+
+     var p1 = new Person("zs",1000);
+ /!*
+     //使用点符号法进行设置时直接对上边的构造函数进行覆盖；所以安全性不可靠
+     p1.age = 1000;
+     *!/
+     p1.say();
+ */
+
+
+    function Person(name) {
+        this.name = name;
+
+        /* 使用var 定义这个age，使外界不能通过点符号法随意的操作这个变量
+         *  相当于是Java中引入private修饰符  而可以让外界访问的方法，就是public
+         */
+        var age;
+
+
+
+
+
+        this.getAge = function () {
+            if (true) {
+                return age;
+            } else {
+                return 18;//没有通过权限的人返回假的年龄18；
+            }
+        };
+
+
+        /*通过外界可以调用的方法去操作外界不能调用的属性
+        * 在这个外界可以调用的方法中存在一些逻辑判断
+        * 保证了安全性；
+        * */
+        this.setAge = function (num) {
+            if (num > 100 || num < 0) {
+                age = 18;
+            } else {
+                age = num;
+            }
+        };
+
+
+        this.say = function () {
+            console.log(this.name);
+        }
+    }
+
+
+    var p1 = new Person("zs");
+    p1.say();
+    p1.setAge(35);
+    console.log(p1.getAge());
+
+
+</script>
+</html>
