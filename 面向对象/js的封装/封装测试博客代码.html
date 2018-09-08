@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+
+
+    function Person(name){
+        this.name = name;
+
+        var age;
+        this.getAge = function(){
+            if(true){
+                return age;
+            }else{
+                return 18;
+            }
+        }
+        this.setAge = function(num){
+            if(num > 100 || num < 0){
+                age = num;
+            }else{
+                age = num;
+            }
+        };
+
+        this.say = function(){
+            console.log(this.name);
+        }
+    }
+
+    var p1 = new Person("lisi");
+    p1.setAge(24);
+    p1.say();//输出lisi
+    console.log(p1.getAge());//输出24
+
+
+</script>
+
+
+
+</html>
