@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+<div id="root"></div>
+</body>
+<!--
+使用 react 经常会遇到几个组件需要共用状态数据的情况。这种情况下，
+我们最好将这部分共享的状态提升至他们最近的父组件当中进行管理。
+-->
+<script type="text/babel">
+
+    /*判断水是否会烧开的组件*/
+   class Boil extends React.Component{
+       render(){
+           if (this.props.celsius >= 100) {
+               return <p>水会烧开</p>;
+           }
+           return <p>水不会烧开</p>;
+       }
+   }
+
+   //封装一个温度组件，不论他是华氏温度，还是摄氏温度
+    //需要根据传入的值，来判断他是华氏温度还是摄氏温度
+   class TemInput extends React.Component{
+       constructor(props){
+           super(props);
+           this.state = {
+               flag : {
+                   c:"摄氏温度",
+                   f:"华氏温度"
+               }
+           }
+       }
+
+
+       /*必须要使用箭头函数，否则this的指向就变了*/
+       temChange = (e) => {
+           this.props.onTemperatureChange(e.target.value)
+       };
+
+
+       render(){
+           return(
+                   <div>
+                       <fieldset>
+                           <lengend>
+                               请输入{this.state.flag[this.props.scale]}温度
+                           </lengend>
+                           <input type="text"
+                                  value={this.props.temperature}
+                                  onChange={this.temChange}
+                           />
+                       </fieldset>
+                   </div>
+           )
+       }
+   }
+
+
+   /*
+   * 思路：
+   * 1:输入时，对于输入的值是从父组件往下传的，因为ReactDOM渲染的父组件APP
+   * 2：先判断你是在哪个输入框输入的，
+   *        如果是在摄氏温度进行输入的，就需要调用转换函数，将它转换成华氏温度，并且放到华氏温度的输入框中
+   *        反之亦然
+   * 3：把摄氏温度传入到组件boil中判断是否烧开。
+   * 4：在输入框组件中添加change事件，
+   *        注意事件函数是从父组件传递过去的。在子组件中进行调用
+   * */
+
+
+    /*华氏温度转摄氏温度逻辑*/
+    function toSheshi(fahrenheit) {
+        return (fahrenheit - 32) * 5 / 9;
+    }
+    /*摄氏温度转华氏温度逻辑*/
+    function toHuashi(celsius) {
+        return (celsius * 9 / 5) + 32;
+    }
+    /*转换温度函数*/
+    function zhuanHuan(temperature, convert) {
+        const input = parseFloat(temperature);
+        if (Number.isNaN(input)) {
+            return '';
+        }
+        const output = convert(input);
+        const rounded = Math.round(output * 1000) / 1000;
+        return rounded.toString();
+    }
+
+    class App extends React.Component{
+        constructor(){
+            super();
+            this.state = {
+                temperature: 0,
+                scale : "c"
+            }
+        }
+
+
+        handleCelsiusChange = (temperature) => {
+            this.setState({
+                scale: 'c',
+                temperature:temperature
+            })
+        };
+
+        handleFahrenheitChange = (temperature) => {
+            this.setState({
+                scale: 'f',
+                temperature:temperature
+            });
+        };
+
+
+        render(){
+            const scale = this.state.scale;//从state中取值
+            const temperature = this.state.temperature;
+            const celsius = scale === 'f' ? zhuanHuan(temperature, toSheshi) : temperature;//传到摄氏的输入框中
+            const fahrenheit = scale === 'c' ? zhuanHuan(temperature, toHuashi) : temperature;//传到华氏的输入框中
+            return(
+                    <div>
+                        <TemInput scale="c"
+                                  temperature={celsius}
+                                  onTemperatureChange = {this.handleCelsiusChange}
+                        />
+                        <TemInput scale="f"
+                                  temperature={fahrenheit}
+                                  onTemperatureChange={this.handleFahrenheitChange}
+                        />
+                        <Boil celsius = {parseFloat(celsius)} />
+                    </div>
+            )
+        }
+    }
+
+    let test = <App/>;
+
+    ReactDOM.render(
+        test,
+            document.getElementById("root")
+    )
+
+
+</script>
+
+</html>

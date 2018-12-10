@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>切换代码</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <style>
+
+        .s1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .s2{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+<div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+    class Test extends React.Component{
+        render(){
+            return(
+                <div id="test" className={this.props.name}></div>
+            )
+        }
+    }
+
+
+
+    class Button extends React.Component{
+
+        constructor(){
+            super();
+            this.state = {
+                cn:"s2"
+            };
+            /*
+             * 要注意：在类里面，系统函数和自定义函数的this指向是不一样的，在函数
+             * changeColor中的this就不指向这个类了。需要使用下边的这一句话
+             * 进行绑定。也可以使用箭头函数
+             * */
+            this.changeColor = this.changeColor.bind(this);
+        }
+
+        //changeColor = () => {}箭头函数
+
+        changeColor(){
+            console.log(this);
+            if (this.state.cn == 's2'){
+                console.log(1111);
+                this.setState({
+                    cn : 's1'
+                })
+            }else{
+                this.setState({
+                    cn : 's2'
+                })
+            }
+        }
+
+
+
+
+
+
+
+        render(){
+            return(
+                <div>
+                    <button onClick={this.changeColor}>点击切换样式</button>
+                    <Test name = {this.state.cn}/>
+                </div>
+            );
+        }
+    }
+
+    let button = <Button/>;
+    ReactDOM.render(button,document.getElementById("root"));
+
+
+</script>
+
+
+
+</html>

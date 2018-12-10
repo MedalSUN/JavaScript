@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>状态改变</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+
+<div id="root"></div>
+
+
+</body>
+
+<script type="text/babel">
+
+    class Clock extends React.Component{
+        constructor(){
+            super();//调用父类的构造函数
+            this.state = {
+                data:new Date()
+            }
+        }
+
+        //在组件的生命周期中使用定时器
+        /*var that = this;
+        setInterval(
+        function () {
+            that.setState({
+                data:new Date()
+            })
+        },1000)*/
+
+        componentDidMount(){
+            //使用ES6的箭头函数，可以不用担心this指向发生改变
+            this.inteval = setInterval(()=>{
+                this.setState({
+                    data:new Date()
+                })
+            },1000)
+        }
+
+        //添加了定时器之后一定要准备去清除定时器
+        componentWillUnMount(){
+            clearInterval(this.inteval);
+        }
+
+
+        render(){
+            return(
+                <div>{this.state.data.toLocaleTimeString()}</div>
+            )
+        }
+    }
+
+
+    let test = <Clock/>;
+    ReactDOM.render(test,document.getElementById("root"));
+
+
+</script>
+
+
+</html>

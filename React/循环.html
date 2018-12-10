@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+<div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+    const num1 = [1, 8, 3, 4, 5];
+    const num2 = num1.map((number) => number * 2);
+    console.log(num2);
+    //将num1遍历出来，并进行逐一的操作。
+
+
+    const list = num1.map((number) => <li key={number.toString()}> {number} </li> );
+
+    ReactDOM.render(
+            <ul>{list}</ul>,
+            document.getElementById("root")
+    )
+
+
+</script>
+
+</html>

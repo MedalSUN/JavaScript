@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>React事件处理</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script type="text/babel">
+
+    class Button extends React.Component{
+        render(){
+            return(
+                    <button onClick={this.show}>点击</button>
+            )
+        }
+        show(){
+            console.log("冷静，客观")
+        }
+    }
+    /*function show(){
+        console.log("冷静，客观")
+    }*/
+
+    let test = <Button/>;
+
+    ReactDOM.render(test,document.getElementById("root"));
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>调用函数时传参</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class BoilingVerdict extends React.Component{
+        render(){
+            if(this.props.celsius >= 100){
+                return <h1>水烧开了</h1>
+            }else {
+                return <h1>水未烧开</h1>
+            }
+        }
+    }
+
+    const scaleNames = {
+        c:"摄氏温度",
+        f:"华氏温度"
+    };
+    class TemperatureInput extends React.Component{
+        constructor(){
+            super();
+            this.state = {
+                temperature:0
+            }
+        }
+        changeTemperature = (e) => {
+            this.setState({
+                temperature:e.target.value
+            });
+        };
+        render(){
+            const temperature = this.state.temperature;
+            const scale = this.props.scale;
+            return (
+                <div>
+                    <fieldset>
+                        <legend>请输入{scaleNames[scale]}</legend>
+                        <input type="text" onChange={this.changeTemperature}/>
+                    </fieldset>
+                    <BoilingVerdict celsius={this.state.temperature}/>
+                </div>
+            )
+        }
+    }
+
+    class Calculator extends React.Component{
+        render(){
+            return (
+                <div>
+                    <TemperatureInput scale="c"/>
+                    <TemperatureInput scale="f"/>
+                </div>
+            )
+        }
+    }
+    var b = <Calculator/>;
+    ReactDOM.render(b,document.getElementById("root"));
+</script>
+</body>
+</html>

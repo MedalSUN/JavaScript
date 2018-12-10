@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>烟台大学</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script type="text/babel">
+
+    class Logo extends React.Component{
+        render(){
+           return(
+               <div>
+                   <img src="img/logo.png" alt="log" id="logo"/>
+               </div>
+           );
+        }
+    }
+
+    class Search extends React.Component{
+        render(){
+            return(
+                <div>
+                    <input type="text" placeholder="请输入关键字"/>
+                </div>
+            );
+        }
+    }
+    class MediaImg extends React.Component{
+        render(){
+            return(
+                <div>
+                    <img src="img/weibo.png" alt="weixin" id="weixin"/>
+                    <img src="img/weixin.png" alt="weibo" id="weibo"/>
+                </div>
+            );
+        }
+    }
+
+
+    class Content extends React.Component{
+        render(){
+            return(
+                    <ul>
+                        <li>烟台大学</li>
+                        <li>烟台大学</li>
+                        <li>烟台大学</li>
+                        <li>烟台大学</li>
+                        <li>烟台大学</li>
+                        <li>烟台大学</li>
+                    </ul>
+            );
+        }
+    }
+
+    class Nav extends React.Component{
+        render(){
+            return(
+                    <div>
+                        <Logo/>
+                        <Search/>
+                        <MediaImg/>
+                        <Content/>
+                    </div>
+            );
+        }
+    }
+
+    class App extends React.Component{
+        render(){
+            return(
+                <div>
+                    <Nav/>
+                </div>
+            );
+        }
+    }
+
+    let app = <App/>;
+
+    ReactDOM.render(
+        app,
+        document.getElementById("root")
+    );
+
+
+
+
+
+
+
+</script>
+
+
+</html>

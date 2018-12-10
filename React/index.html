@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <!--react的核心库-->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!--react-dom的库 提供操作dom的方法；渲染react页面-->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!--编译jsx  这个js是用于开发环境，生产环境（交付给用户）不能使用这个-->
+    <!--
+        使用这个文件进行编译jsx，只能用于开发，他的效率太慢，因为编译在本地，
+        需要每一次都编译，使用构建工具可以进行编译，这样编译出来的文件可以直接使用
+    -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+//    let ele = <h1>Hello, world!</h1>;
+    /*
+            组件1的定义方法  ES5
+        function Show(props){
+            return <h1>Hello, world! {props.name}</h1>
+        }
+    */
+
+    class TestCom1 extends React.Component{
+        render(){
+            return <h1>Hello,{this.props.name}</h1>
+        };
+    };
+    class TestCom2 extends React.Component{
+        render(){
+            return <h1>Hello,{this.props.age}</h1>
+        };
+    };
+
+    class App extends React.Component{
+        render(){
+            return(
+                <div>
+                    <TestCom1 name = "kaka"/>
+                    <TestCom2 age = "22"/>
+                </div>)
+        }
+    }
+
+   /* let ele1 = <TestCom1 name = "kaka"/>;
+    let ele2 = <TestCom2 age = '22' />;*/
+    let ele = <App/>;
+    ReactDOM.render(
+        ele,
+        document.getElementById('root')
+    );
+
+</script>
+
+</body>
+</html>

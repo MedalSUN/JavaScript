@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>传值</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+
+</head>
+<body>
+<div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+    class Button extends React.Component{
+        constructor(){
+            super();
+            this.state = {
+                name : "kaka"
+            }
+        }
+        render(){
+            return(
+                /*使用这种方式既可以绑定类的this，也可以传值*/
+                <button onClick={this.show.bind(this,this.state.name)}>
+                    {this.state.name}
+                </button>
+            )
+        }
+
+        show(name){
+            console.log(name);
+        }
+    }
+
+
+    let btn = <Button/>;
+    ReactDOM.render(btn,document.getElementById("root"));
+
+
+
+</script>
+
+</html>
