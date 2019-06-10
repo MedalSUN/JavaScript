@@ -282,7 +282,7 @@
   *             var reg1 = /\w/
   *             var reg2 = /\w/g
   *             reg1.test('ab')  不论执行多次，都会为true
-  *             reg2.test('ab')  前两次是false，第三次是true。【这种方式是由于lastIndex导致的，去掉全局匹配即可。非全局状态下，是没有lastIndex属性的】
+  *             reg2.test('ab')  前两次是true，第三次是false。【这种方式是由于lastIndex导致的，去掉全局匹配即可。非全局状态下，是没有lastIndex属性的】
   *     
   *     RegExp.prototype.exce(str)
   *     2：  exce
